@@ -1,0 +1,43 @@
+const express = require('express');
+const app = express();
+
+const { Datastore } = require('@google-cloud/datastore');
+const datastore = new Datastore();
+
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+app.use(morgan('short'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+
+app.get('/', (req, res) => {
+    res.send('Welcome to the customers app!');
+})
+
+
+app.get('/getCustomers', (req, res) => {
+    var query = datastore.createQuery('customer');
+
+    datastore.runQuery(query, (err, data) => {
+        if (err)
+            console.log(err);
+        else
+            var customerId = data.map((customer) => ({ id: customer[datastore.KEY].id, ...customer }));
+        res.send(customerId);
+    });
+});
+
+app.get('/getCustomerById', (req, res) => {
+    console.log(req.query);
+    const id = datastore.key(['customer', parseInt(req.query.id)]);
+    const query = datastore.createQuery('customer').filter('__key__', '=', id);
+    datastore.runQuery(query, (err, data) => {
+        if (err)
+            console.log(err);
+        else
+            res.send(data);
+    });
+});
+
+exports.funcone = app;
