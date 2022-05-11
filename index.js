@@ -10,11 +10,12 @@ app.use(morgan('short'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+const cors = require('cors');
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Welcome to the customers app!');
 })
-
 
 app.get('/getCustomers', (req, res) => {
     var query = datastore.createQuery('customer');
