@@ -1,17 +1,8 @@
 const express = require('express');
 const app = express();
 
-const port = 8080;
-
-app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
-})
-
 const { Datastore } = require('@google-cloud/datastore');
 const datastore = new Datastore();
-
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
 
 const cors = require('cors');
 app.use(cors());
