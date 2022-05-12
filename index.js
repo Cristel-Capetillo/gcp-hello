@@ -1,13 +1,11 @@
 const express = require('express');
 const app = express();
-
 const { Datastore } = require('@google-cloud/datastore');
 const datastore = new Datastore();
-
 const cors = require('cors');
-app.use(cors({origin: '*'}));
 
-app.get('/customer', (req, res) => {
+
+app.get('/getCustomers', (req, res) => {
     var query = datastore.createQuery('customer');
 
     datastore.runQuery(query, (err, data) => {
@@ -19,10 +17,10 @@ app.get('/customer', (req, res) => {
     });
 });
 
-app.get('/:id', (req, res) => {
-    console.log(req.query);
-    const id = datastore.key(['customer', parseInt(req.query.id)]);
-    const query = datastore.createQuery('customer').filter('__key__', '=', id);
+app.get('/getCustomer', (req, res) => {
+    console.log(req.params);
+    const customerId = datastore.key(['customer', parseInt(req.params.customerId)]);
+    const query = datastore.createQuery('customer').filter('__key__', '=', customerId);
     datastore.runQuery(query, (err, data) => {
         if (err)
             console.log(err);
@@ -30,5 +28,7 @@ app.get('/:id', (req, res) => {
             res.send(data);
     });
 });
+
+app.use(cors({origin: '*'}));
 
 exports.funcone = app;
