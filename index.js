@@ -8,10 +8,6 @@ const cors = require('cors');
 app.use(cors());
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the customers app!');
-})
-
-app.get('/getCustomers', (req, res) => {
     var query = datastore.createQuery('customer');
 
     datastore.runQuery(query, (err, data) => {
@@ -23,7 +19,7 @@ app.get('/getCustomers', (req, res) => {
     });
 });
 
-app.get('/:id', (req, res) => {
+app.get('/getcustomerbyid', (req, res) => {
     console.log(req.query);
     const id = datastore.key(['customer', parseInt(req.query.id)]);
     const query = datastore.createQuery('customer').filter('__key__', '=', id);
