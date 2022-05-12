@@ -28,7 +28,7 @@ app.get('/getCustomer', (req, res) => {
         if (err)
             console.log(err);
         else
-            res.send(data.values);
+            res.send(data);
     });
 });
 
