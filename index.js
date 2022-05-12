@@ -4,6 +4,9 @@ const { Datastore } = require('@google-cloud/datastore');
 const datastore = new Datastore();
 const cors = require('cors');
 
+app.get('/', (req, res) => {
+    res.send('Welcome to the customers app!')
+});
 
 app.get('/getCustomers', (req, res) => {
     var query = datastore.createQuery('customer');
