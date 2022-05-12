@@ -5,7 +5,7 @@ const { Datastore } = require('@google-cloud/datastore');
 const datastore = new Datastore();
 
 const cors = require('cors');
-app.use(cors());
+app.use(cors({origin: '*'}));
 
 app.get('/customer', (req, res) => {
     var query = datastore.createQuery('customer');
