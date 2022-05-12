@@ -21,14 +21,14 @@ app.get('/getCustomers', (req, res) => {
 });
 
 app.get('/getCustomer', (req, res) => {
-    console.log(req.params);
-    const customerId = datastore.key(['customer', parseInt(req.params.customerId)]);
+    console.log(req.query);
+    const customerId = datastore.key(['customer', parseInt(req.query.customerId)]);
     const query = datastore.createQuery('customer').filter('__key__', '=', customerId);
     datastore.runQuery(query, (err, data) => {
         if (err)
             console.log(err);
         else
-            res.send(data);
+            res.send(data.values);
     });
 });
 
