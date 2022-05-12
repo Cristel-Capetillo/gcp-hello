@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx functions-framework --target=funcone"
+    "start": "node index.js"
   },
   "author": "Cristel Capetillo",
   "license": "ISC",
@@ -14,7 +14,6 @@
   "dependencies": {
     "@google-cloud/datastore": "^6.6.2",
     "cors": "^2.8.5",
-    "express": "^4.18.1",
-    "morgan": "^1.10.0"
+    "express": "^4.18.1"
   }
 }

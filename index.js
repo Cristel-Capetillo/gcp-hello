@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
 
+const port = 8080;
+
+app.listen(port, () => {
+    console.log(`App listening on port ${port}`);
+})
+
 const { Datastore } = require('@google-cloud/datastore');
 const datastore = new Datastore();
 
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
-app.use(morgan('short'));
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const cors = require('cors');
@@ -29,7 +32,7 @@ app.get('/getCustomers', (req, res) => {
     });
 });
 
-app.get('/getCustomerById', (req, res) => {
+app.get('/getCustomers/:id', (req, res) => {
     console.log(req.query);
     const id = datastore.key(['customer', parseInt(req.query.id)]);
     const query = datastore.createQuery('customer').filter('__key__', '=', id);
