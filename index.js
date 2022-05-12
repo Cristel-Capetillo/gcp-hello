@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
+
 const { Datastore } = require('@google-cloud/datastore');
 const datastore = new Datastore();
+
 const cors = require('cors');
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Welcome to the customers app!')
@@ -31,7 +34,5 @@ app.get('/getCustomer', (req, res) => {
             res.send(data);
     });
 });
-
-app.use(cors({origin: '*'}));
 
 exports.funcone = app;
