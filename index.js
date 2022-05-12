@@ -23,7 +23,7 @@ app.get('/getCustomers', (req, res) => {
     });
 });
 
-app.get('/getCustomers/:id', (req, res) => {
+app.get('/:id', (req, res) => {
     console.log(req.query);
     const id = datastore.key(['customer', parseInt(req.query.id)]);
     const query = datastore.createQuery('customer').filter('__key__', '=', id);
