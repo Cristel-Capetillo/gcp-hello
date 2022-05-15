@@ -1,0 +1,33 @@
+{
+  "name": "svelte-frontendapp",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv public --single"
+  },
+  "engines": {
+    "node": "16.x.x"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^12.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.0",
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.13",
+    "rollup": "^2.3.4",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-terser": "^5.1.2",
+    "svelte": "^3.0.0",
+    "svelte-preprocess": "^4.10.6",
+    "tailwindcss": "^3.0.24"
+  },
+  "dependencies": {
+    "page": "^1.11.6",
+    "sirv-cli": "^0.4.4"
+  },
+  "description": "Front end web app developed on Svelte, consuming an API.",
+  "main": "rollup.config.js",
+  "author": "Cristel Capetillo",
+  "license": "ISC"
+}
