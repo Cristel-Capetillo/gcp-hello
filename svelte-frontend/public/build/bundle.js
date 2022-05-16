@@ -1834,14 +1834,14 @@ var app = (function () {
     			p1 = element("p");
     			t4 = text(t4_value);
     			attr_dev(p0, "class", "font-thin font-sans");
-    			add_location(p0, file$1, 22, 12, 644);
+    			add_location(p0, file$1, 23, 12, 656);
     			attr_dev(li0, "class", "font-sans font-medium");
-    			add_location(li0, file$1, 21, 10, 589);
+    			add_location(li0, file$1, 21, 10, 588);
     			attr_dev(p1, "class", "font-thin font-sans");
-    			add_location(p1, file$1, 25, 12, 777);
+    			add_location(p1, file$1, 27, 12, 802);
     			attr_dev(li1, "class", "font-sans font-medium");
-    			add_location(li1, file$1, 24, 10, 723);
-    			add_location(ul, file$1, 20, 8, 574);
+    			add_location(li1, file$1, 25, 10, 735);
+    			add_location(ul, file$1, 20, 8, 573);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
@@ -1884,7 +1884,7 @@ var app = (function () {
     			p = element("p");
     			p.textContent = "Loading ...";
     			attr_dev(p, "class", "font-thin font-sans");
-    			add_location(p, file$1, 18, 6, 507);
+    			add_location(p, file$1, 18, 6, 506);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -1924,9 +1924,9 @@ var app = (function () {
     			div = element("div");
     			if_block.c();
     			attr_dev(div, "class", "flex justify-center text-2xl leading-loose font-semibold");
-    			add_location(div, file$1, 16, 2, 398);
+    			add_location(div, file$1, 16, 2, 397);
     			attr_dev(main, "class", "text-center py-24 max-w-xs mx-auto sm:max-w-none");
-    			add_location(main, file$1, 15, 0, 332);
+    			add_location(main, file$1, 15, 0, 331);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1972,14 +1972,14 @@ var app = (function () {
 
     function instance$1($$self, $$props, $$invalidate) {
     	let { params } = $$props;
-    	let customer = {};
+    	let { customer = [] } = $$props;
 
     	onMount(async () => {
     		const res = await fetch(apiUrl$1 + params.id);
     		$$invalidate(0, customer = await res.json());
     	});
 
-    	const writable_props = ["params"];
+    	const writable_props = ["params", "customer"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Customer> was created with unknown prop '${key}'`);
@@ -1990,6 +1990,7 @@ var app = (function () {
 
     	$$self.$set = $$props => {
     		if ("params" in $$props) $$invalidate(1, params = $$props.params);
+    		if ("customer" in $$props) $$invalidate(0, customer = $$props.customer);
     	};
 
     	$$self.$capture_state = () => ({ onMount, params, customer, apiUrl: apiUrl$1 });
@@ -2009,7 +2010,7 @@ var app = (function () {
     class Customer extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { params: 1 });
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { params: 1, customer: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -2031,6 +2032,14 @@ var app = (function () {
     	}
 
     	set params(value) {
+    		throw new Error("<Customer>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get customer() {
+    		throw new Error("<Customer>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set customer(value) {
     		throw new Error("<Customer>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
