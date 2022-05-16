@@ -10,7 +10,7 @@
   onMount(async () => {
     console.log(customer);
     const res = await fetch(apiUrl + params.id);
-    customer = await res.json();
+    customer = await res.json(customer[0]);
   });
 </script>
 
