@@ -1,6 +1,6 @@
-import Customers from './routes/Customers.svelte'
-import Customer from './routes/Customer.svelte'
-import DefaultPage from './routes/DefaultPage.svelte'
+import Customers from './components/Customers.svelte'
+import Customer from './components/Customer.svelte'
+import DefaultPage from './components/DefaultPage.svelte'
 
 export default [{
         path: '/customers',

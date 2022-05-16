@@ -9,11 +9,7 @@
 
   onMount(async () => {
     console.log(customer);
-    const res = await fetch(apiUrl + params.id, {
-      headers: {
-        "Content-Type": "text/plain",
-      },
-    });
+    const res = await fetch(apiUrl + params.id);
     customer = await res.json();
   });
 </script>
@@ -23,16 +19,14 @@
     {#if customer == undefined}
       <p class="font-thin font-sans">Loading ...</p>
     {:else}
-      {#each customer as item}
         <ul>
           <li class="font-sans font-medium">Country:
-            <p class="font-thin font-sans">{item.origin}</p>
+            <p class="font-thin font-sans">{customer.origin}</p>
           </li>
           <li class="font-sans font-medium">Habits:
-            <p class="font-thin font-sans">{item.details}</p>
+            <p class="font-thin font-sans">{customer.details}</p>
           </li>
         </ul>
-    {/each}
     {/if}
   </div>
 </main>
