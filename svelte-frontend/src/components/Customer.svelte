@@ -8,7 +8,6 @@
     "https://europe-west2-striped-graph-349818.cloudfunctions.net/gcp-hello/getCustomer?customerId=";
 
   onMount(async () => {
-    console.log(customer);
     const res = await fetch(apiUrl + params.id);
     customer = await res.json();
   });
@@ -19,17 +18,18 @@
     {#if customer == undefined}
       <p class="font-thin font-sans">Loading ...</p>
     {:else}
+      {#each customer as item}
         <ul>
-          <a href="/{customer.id}">
-          <li class="font-sans font-medium">Country:
-            <p class="font-thin font-sans">{customer.origin}</p>
+          <li class="font-sans font-medium">
+            Country:
+            <p class="font-thin font-sans">{item.origin}</p>
           </li>
-          <li class="font-sans font-medium">Habits:
-            <p class="font-thin font-sans">{customer.details}</p>
+          <li class="font-sans font-medium">
+            Habits:
+            <p class="font-thin font-sans">{item.details}</p>
           </li>
-          </a>
         </ul>
+      {/each}
     {/if}
   </div>
 </main>
-
