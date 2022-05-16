@@ -10,7 +10,7 @@
   onMount(async () => {
     console.log(customer);
     const res = await fetch(apiUrl + params.id);
-    customer = await res.json(customer[0]);
+    customer = await res.json();
   });
 </script>
 
@@ -20,12 +20,14 @@
       <p class="font-thin font-sans">Loading ...</p>
     {:else}
         <ul>
+          <a href="/{customer.id}">
           <li class="font-sans font-medium">Country:
             <p class="font-thin font-sans">{customer.origin}</p>
           </li>
           <li class="font-sans font-medium">Habits:
             <p class="font-thin font-sans">{customer.details}</p>
           </li>
+          </a>
         </ul>
     {/if}
   </div>

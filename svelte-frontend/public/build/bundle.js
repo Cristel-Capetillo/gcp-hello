@@ -1817,6 +1817,7 @@ var app = (function () {
     // (21:4) {:else}
     function create_else_block(ctx) {
     	let ul;
+    	let a;
     	let li0;
     	let t0;
     	let p0;
@@ -1828,10 +1829,12 @@ var app = (function () {
     	let p1;
     	let t4_value = /*customer*/ ctx[0].details + "";
     	let t4;
+    	let a_href_value;
 
     	const block = {
     		c: function create() {
     			ul = element("ul");
+    			a = element("a");
     			li0 = element("li");
     			t0 = text("Country:\n            ");
     			p0 = element("p");
@@ -1842,23 +1845,26 @@ var app = (function () {
     			p1 = element("p");
     			t4 = text(t4_value);
     			attr_dev(p0, "class", "font-thin font-sans");
-    			add_location(p0, file$1, 23, 12, 682);
+    			add_location(p0, file$1, 24, 12, 707);
     			attr_dev(li0, "class", "font-sans font-medium");
-    			add_location(li0, file$1, 22, 10, 627);
+    			add_location(li0, file$1, 23, 10, 652);
     			attr_dev(p1, "class", "font-thin font-sans");
-    			add_location(p1, file$1, 26, 12, 815);
+    			add_location(p1, file$1, 27, 12, 840);
     			attr_dev(li1, "class", "font-sans font-medium");
-    			add_location(li1, file$1, 25, 10, 761);
-    			add_location(ul, file$1, 21, 8, 612);
+    			add_location(li1, file$1, 26, 10, 786);
+    			attr_dev(a, "href", a_href_value = "/" + /*customer*/ ctx[0].id);
+    			add_location(a, file$1, 22, 10, 616);
+    			add_location(ul, file$1, 21, 8, 601);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, ul, anchor);
-    			append_dev(ul, li0);
+    			append_dev(ul, a);
+    			append_dev(a, li0);
     			append_dev(li0, t0);
     			append_dev(li0, p0);
     			append_dev(p0, t1);
-    			append_dev(ul, t2);
-    			append_dev(ul, li1);
+    			append_dev(a, t2);
+    			append_dev(a, li1);
     			append_dev(li1, t3);
     			append_dev(li1, p1);
     			append_dev(p1, t4);
@@ -1866,6 +1872,10 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			if (dirty & /*customer*/ 1 && t1_value !== (t1_value = /*customer*/ ctx[0].origin + "")) set_data_dev(t1, t1_value);
     			if (dirty & /*customer*/ 1 && t4_value !== (t4_value = /*customer*/ ctx[0].details + "")) set_data_dev(t4, t4_value);
+
+    			if (dirty & /*customer*/ 1 && a_href_value !== (a_href_value = "/" + /*customer*/ ctx[0].id)) {
+    				attr_dev(a, "href", a_href_value);
+    			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(ul);
@@ -1892,7 +1902,7 @@ var app = (function () {
     			p = element("p");
     			p.textContent = "Loading ...";
     			attr_dev(p, "class", "font-thin font-sans");
-    			add_location(p, file$1, 19, 6, 545);
+    			add_location(p, file$1, 19, 6, 534);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -1932,9 +1942,9 @@ var app = (function () {
     			div = element("div");
     			if_block.c();
     			attr_dev(div, "class", "flex justify-center text-2xl leading-loose font-semibold");
-    			add_location(div, file$1, 17, 2, 436);
+    			add_location(div, file$1, 17, 2, 425);
     			attr_dev(main, "class", "text-center py-24 max-w-xs mx-auto sm:max-w-none");
-    			add_location(main, file$1, 16, 0, 370);
+    			add_location(main, file$1, 16, 0, 359);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1985,7 +1995,7 @@ var app = (function () {
     	onMount(async () => {
     		console.log(customer);
     		const res = await fetch(apiUrl$1 + params.id);
-    		$$invalidate(0, customer = await res.json(customer[0]));
+    		$$invalidate(0, customer = await res.json());
     	});
 
     	const writable_props = ["params"];
